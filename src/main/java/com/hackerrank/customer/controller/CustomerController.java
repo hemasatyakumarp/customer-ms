@@ -21,9 +21,6 @@ public class CustomerController {
 	@RequestMapping(value = "/customer", method = RequestMethod.GET)
 	public ResponseEntity<List<Customer>> getAllCustomers() {
 		List<Customer> list = service.getAllCustomers();
-		if (list == null) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
-		}
 		return new ResponseEntity(list, HttpStatus.OK);
 
 	}

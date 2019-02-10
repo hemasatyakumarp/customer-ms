@@ -28,7 +28,7 @@ public class CustomerServiceImpl implements CustomerService {
     	 Customer customer = customerRepository.findOne(id);
 
          if (customer == null) {
-             throw null;
+             return null;
          }
          
         customerRepository.deleteById(id);
