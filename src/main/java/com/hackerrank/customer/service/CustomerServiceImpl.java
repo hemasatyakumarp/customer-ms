@@ -25,45 +25,43 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Override
     public Boolean deleteCustomerById(Long id) {
-    	 Customer customer = customerRepository.findOne(id);
+    	 Boolean b = customerRepository.existsById(id);
 
-         if (customer == null) {
-             return null;
-         }
-         
+         if (!b) {
+             return false;
+         } else {         
         customerRepository.deleteById(id);
         return true;
+         }
     }
 
     @Override
     public Customer createCustomer(Customer customer) {
-        Customer existingCustomer = customerRepository.findOne(customer.getId());
-
-        if (existingCustomer != null) {
+        if(customerRepository.existsById(customer.getId())){
             return null;
         }
 
         customerRepository.save(customer);
-        return customerRepository.findOne(customer.getId());
+        return customerRepository.findById(customer.getId()).get();
     }
     
     @Override
     public Customer updateCustomer(Long customerId,Customer customer) {
         
-        Customer tempCustomer = customerRepository.findOne(customerId);
+        Customer tempCustomer = customerRepository.findById(customer.getId()).get();
 
         if (tempCustomer == null) {
             return null;
         }
        
         customerRepository.save(customer);
-        return customerRepository.findOne(customerId);
+        return customerRepository.findById(customerId).get();
         
     }
 
     @Override
     public Customer getCustomerById(Long id) {
-        Customer customer = customerRepository.findOne(id);
+        Customer customer = customerRepository.findById(id).get();
 
         if (customer == null) {
             throw new NoSuchResourceFoundException("No Customer with given id found.");

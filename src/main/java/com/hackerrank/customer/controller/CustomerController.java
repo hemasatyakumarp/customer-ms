@@ -29,7 +29,7 @@ public class CustomerController {
 	public ResponseEntity<Customer> getCustomer(@PathVariable("id") Long id) {
 		Customer c = service.getCustomerById(id);
 		if (c == null) {
-			return new ResponseEntity(HttpStatus.NOT_FOUND);
+			return new ResponseEntity("No Customer is available with Id "+id,HttpStatus.NOT_FOUND);
 		}
 		return new ResponseEntity(c, HttpStatus.OK);
 

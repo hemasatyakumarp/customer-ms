@@ -1,4 +1,4 @@
-package com.hackerrank.sample;
+package com.hackerrank.customer;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
